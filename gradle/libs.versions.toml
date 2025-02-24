@@ -1,0 +1,56 @@
+[versions]
+agp = "8.1.4"
+kotlin = "1.6.10"
+kaptVersion = "2.0.20"
+daggerVersion = "2.40.5"
+ktx = "1.7.0"
+compose = "1.1.0"
+runtimeVarsion  = "2.3.1"
+viewmodelVersion = "2.4.1"
+activityVersion = "1.3.1"
+junitVersion = "4.13.2"
+junitExtVersion = "1.1.3"
+espressoVersion = "3.4.0"
+hiltLifecycleViewmodelVersion = "1.0.0-alpha03"
+hiltCompilerVersion = "1.0.0"
+retrofitVersion = "2.9.0"
+okHttpVersion = "5.0.0-alpha.3"
+[libraries]
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
+
+hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "daggerVersion" }
+ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose"}
+
+material = {group = "androidx.compose.material", name = "material", version.ref = "compose" }
+ui-test-junit4 = {group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose"}
+
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "runtimeVarsion" }
+lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewmodelVersion" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityVersion" }
+junit = { group = "junit", name = "junit", version.ref = "junitVersion"}
+junit-ext = { group = "androidx.test.ext", name ="junit", version.ref = "junitExtVersion"}
+espresso-core = {  group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoVersion" }
+
+
+hilt-android = { group = "com.google.dagger",  name = "hilt-android", version.ref = "daggerVersion"}
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerVersion"}
+
+hilt-lifecycle-viewmodel = { group = "androidx.hilt", name = "hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodelVersion" }
+hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompilerVersion" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompilerVersion" }
+
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttpVersion" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose" }
+dagger-hilt = { id = "dagger.hilt.android.plugin",  version.ref = "daggerVersion"}
+kotlin-kapt = { id = "kotlin-kapt" , version.ref = "kaptVersion" }
+
+
