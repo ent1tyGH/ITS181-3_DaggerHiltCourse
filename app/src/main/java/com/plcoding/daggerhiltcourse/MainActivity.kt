@@ -4,19 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.plcoding.daggerhiltcourse.data.model.Employee
+import com.plcoding.daggerhiltcourse.presentation.viewmodel.MyViewModel
 import com.plcoding.daggerhiltcourse.ui.theme.DaggerHiltCourseTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,15 +26,14 @@ class MainActivity : ComponentActivity() {
                     Surface {
                         val viewModel = hiltViewModel<MyViewModel>()
                         val items = viewModel.getItems()
-                        var n = 0
-                        for (item in items) {
-                            ++n
-                            Log.d("MainActivity", "$n Employee: $item")
+
+                        items.forEachIndexed { index, item ->
+                            Log.d("MainActivity", "${index + 1} Employee: ${item.name}")
                         }
-                        Log.d("MainActivity", "My name is ${viewModel.mame}")
-                        Log.d("MainActivity", "Call)ing Greeting")
+
+                        Log.d("MainActivity", "My name is ${viewModel.name}")
                         Greetings(
-                            descriptions = items,
+                            employees = items,
                             modifier = Modifier.padding(innerPadding)
                         )
                     }
@@ -49,29 +44,35 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greetings (descriptions: List<String>, modifier: Modifier) {
-    Column() {
-        for (desc in descriptions) {
-            Greeting(
-                description = desc,
-                mod = modifier
+fun Greetings(employees: List<Employee>, modifier: Modifier) {
+    Column(modifier = modifier.padding(16.dp)) {
+        employees.forEach { employee ->
+            EmployeeCard(employee = employee)
+        }
+    }
+}
+
+@Composable
+fun EmployeeCard(employee: Employee) {
+    Card(
+        elevation = 4.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+    ) {
+        Row(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = employee.name,
+                style = MaterialTheme.typography.h6
             )
         }
     }
 }
+
+@Preview(showBackground = true)
 @Composable
-fun Greeting (description: String, mod: Modifier) {
-    Row() {
-        Text(
-            text = description
-        )
+fun PreviewEmployeeCard() {
+    DaggerHiltCourseTheme {
+        EmployeeCard(employee = Employee("Preview Name"))
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun PreviewGreeting () {
-//    DaggerHiltCourseTheme {
-//        Greeting()
-//    }
-//}

@@ -1,4 +1,6 @@
-package com.plcoding.daggerhiltcourse.data.model;
+// Employee.kt
+package com.plcoding.daggerhiltcourse.data.model
 
-public class Employee {
-}
+data class Employee(
+    val name: String
+)
